@@ -1,6 +1,8 @@
 import { config } from "../config/config";
 
 export class KYCService {
+    /** //TODO: Add comments here
+     */
     public async documentVerification(): Promise<string | null> {
         try {
             const accessToken: string | null = await this.diditAuthentication();
@@ -38,6 +40,8 @@ export class KYCService {
         }
     }
 
+    /** //TODO: Add comments here
+     */
     private async diditAuthentication(): Promise<string | null>{
         try {
             const params = new URLSearchParams();
