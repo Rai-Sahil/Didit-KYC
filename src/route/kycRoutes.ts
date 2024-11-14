@@ -1,17 +1,26 @@
-import { Request, Response, Application } from 'express';
+import { Application } from 'express';
 import { KYCController } from '../controller/KycController';
+import { KYCService } from '../service/kycService';
+import { ValidateKYC } from '../middleware/validation';
 
 export class KYCRoutes {
     private kycController: KYCController;
+    private kycService: KYCService;
 
     constructor() {
-        this.kycController = new KYCController();
+        this.kycService = new KYCService();
+        this.kycController = new KYCController(this.kycService);
     }
 
     /**
      * @param {Application} app
     */
     public routes(app: Application): void {
-        // /TODO: Create a route which will be used to send documents to Didit API.
+        // POST - request to verify user documents
+        app.post(
+            '/kyc/verify-document',
+            ValidateKYC,
+            this.kycController.verifyDocument.bind(this.kycController)
+        );
     }
 }

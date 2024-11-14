@@ -1,7 +1,7 @@
 import app from './app';
+import { config } from './config/config';
 
-// /HACK: PORT number should be in .env file
-const PORT = 3001;
+const PORT = config.PORT;
 
 app.listen(PORT, () => {
     console.log('Express server listening on port ' + PORT);

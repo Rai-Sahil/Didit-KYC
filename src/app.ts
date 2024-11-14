@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { errorHandler } from './middleware/error';
 import { KYCRoutes } from './route/kycRoutes';
 
 class App {
@@ -10,6 +11,7 @@ class App {
     constructor() {
         this.app = express();
         this.config();
+        this.handleError();
 
         this.kycRoutes.routes(this.app);
     }
@@ -27,6 +29,10 @@ class App {
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(cors());
+    }
+
+    private handleError(): void {
+        this.app.use(errorHandler)
     }
 }
 
