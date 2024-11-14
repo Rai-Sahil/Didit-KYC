@@ -4,16 +4,13 @@ import cors from 'cors';
 
 class App {
     public app: express.Application;
+    // /TODO: Add routes to handle doc verification
 
     constructor() {
         this.app = express();
         this.config();
     }
     
-    /**
-     * @param 
-     * @returns {void} a - The number
-     */
     private config(): void {
         this.app.use((_, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
