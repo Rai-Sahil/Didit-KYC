@@ -1,14 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { KYCRoutes } from './route/kycRoutes';
 
 class App {
     public app: express.Application;
-    // /TODO: Add routes to handle doc verification
+    private kycRoutes: KYCRoutes = new KYCRoutes();
 
     constructor() {
         this.app = express();
         this.config();
+
+        this.kycRoutes.routes(this.app);
     }
     
     private config(): void {
